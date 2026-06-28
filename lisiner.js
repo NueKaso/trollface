@@ -78,4 +78,11 @@ client.on("messageCreate", async (message) => {
   };
 });
 
+http.createServer((req, res) => {
+  res.writeHead(200, { 'Content-Type': 'text/plain' });
+  res.end('Bot is running\n');
+}).listen(process.env.PORT || 3000, () => {
+  console.log('Web server is running');
+});
+
 client.login(process.env.DISCORD_TOKEN)
