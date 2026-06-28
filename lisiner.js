@@ -49,7 +49,7 @@ const URL_GIF = [
 ]
 
 client.once("clientReady", () =>{
-  console.log("Ready1")
+  console.log("ready")
 })
 
 client.on("messageCreate", async (message) => {
@@ -65,12 +65,17 @@ client.on("messageCreate", async (message) => {
     await user.send("DName&Username: " + "**" + targ + " " + targU + "**" + " Message send: " + message.content);
     
   } catch (error) {
-    console.error("send error", error);
+    console.error("ok", error);
   }
 
   if (message.attachments.size > 0){
-    const randomiz = rReaction[Math.floor(Math.random() * rReaction.length)]
-    message.react(randomiz)
+    try {
+      const randomiz = rReaction[Math.floor(Math.random() * rReaction.length)];
+      await message.react(randomiz);
+      } catch (error) {
+        console.log("ok");
+      }
+    
   }
 
   if (phrases.some(phrases => message.content.toLowerCase().includes(phrases))) {
@@ -81,9 +86,9 @@ client.on("messageCreate", async (message) => {
 
 http.createServer((req, res) => {
   res.writeHead(200, { 'Content-Type': 'text/plain' });
-  res.end('Bot is running\n');
+  res.end('ok\n');
 }).listen(process.env.PORT || 3000, () => {
-  console.log('Web server is running');
+  console.log('ok');
 });
 
 client.login(process.env.DISCORD_TOKEN)
