@@ -38,7 +38,7 @@ const rReaction = [
   "1516819920367910942", //zhelopuzi3
   "1516815991957360680" // papichking
 ]
-const MYID = "1032680511396642828"
+const MYID = process.env.MY_ID
 const URL_GIF = [
   "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExejJnd3A3N3BpczNlaWVldzBybDZ0bHRlNzViNzBqamxvdDg2MXo3MCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/amxLHEPgGDCKs/giphy.gif",
   "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZmFwZDVsbXQwcnByYndxeWtvNmU0cGd0bHYzNnUxdDZsZWZ3MGJ3NiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/huuk0XPg7APDO/giphy.gif",
