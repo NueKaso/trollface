@@ -1,3 +1,16 @@
+import 'dotenv/config';
+import http from 'http';
+import { Client, GatewayIntentBits } from 'discord.js';
+
+
+const client = new Client({
+  intents: [
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildMessages,
+    GatewayIntentBits.MessageContent,
+  ],
+});
+
 const phrases = [
   "затролил",
   "трол",
