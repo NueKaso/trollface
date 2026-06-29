@@ -1,16 +1,3 @@
-import 'dotenv/config';
-import http from 'http';
-import { Client, GatewayIntentBits } from 'discord.js';
-
-
-const client = new Client({
-  intents: [
-    GatewayIntentBits.Guilds,
-    GatewayIntentBits.GuildMessages,
-    GatewayIntentBits.MessageContent,
-  ],
-});
-
 const phrases = [
   "затролил",
   "трол",
@@ -36,8 +23,7 @@ const rReaction = [
   "1517183494910906559",//vlad
   "1517521012457996328", //vodi
   "1516819920367910942", //zhelopuzi3
-  "1516815991957360680", // papichking
-  "1520833993870676020" // trollgif
+  "1516815991957360680" // papichking
 ]
 const MYID = "1032680511396642828"
 const URL_GIF = [
@@ -49,7 +35,7 @@ const URL_GIF = [
 ]
 
 client.once("clientReady", () =>{
-  console.log("ready")
+  console.log("Ready1")
 })
 
 client.on("messageCreate", async (message) => {
@@ -61,24 +47,22 @@ client.on("messageCreate", async (message) => {
     const targ = await message.author.displayName
     const targU = await message.author.username
 
+     const files = message.attachments.map(attachment => attachment.url).join(", ");
+     const filestext = files ? ' Вложения: ' + files : ""
 
-    await user.send("DName&Username: " + "**" + targ + " " + targU + "**" + " Message send: " + message.content);
+
+    await user.send("DName&Username: " + "**" + targ + " " + targU + "**" + " Message send: " + message.content + filestext);
     
   } catch (error) {
-    console.error("ok", error);
+    console.error("send error", error);
   }
 
   if (message.attachments.size > 0){
-    try {
-      const randomiz = rReaction[Math.floor(Math.random() * rReaction.length)];
-      await message.react(randomiz);
-      } catch (error) {
-        console.log("ok");
-      }
-    
+    const randomiz = rReaction[Math.floor(Math.random() * rReaction.length)]
+    message.react(randomiz)
   }
 
-  if (phrases.some(phrases => message.content.toLowerCase().includes(phrases))) {
+  if (phrases.some(p => message.content.toLowerCase().includes(p))) {
     const trollrand = URL_GIF[Math.floor(Math.random() * URL_GIF.length)]
     message.reply(trollrand)
   };
